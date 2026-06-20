@@ -7,12 +7,12 @@ const SERVICES = [
   { icon: '📲', name: 'Paybox', desc: 'Solutions de collecte et paiement digital pour entreprises et institutions.' },
   { icon: '🎮', name: 'Gaming Room Management', desc: 'Plateforme SaaS complète de gestion de salles de jeux PS4/PS5 — KASMOK Digital.' },
   { icon: '⛪', name: 'Church Management', desc: 'Système de gestion pour communautés religieuses — membres, finances, événements.' },
-  { icon: '💻', name: 'Développement d''Applications', desc: 'Conception et développement d''applications web et mobiles sur mesure pour entreprises et institutions.' },
+  { icon: '💻', name: "Développement d'Applications", desc: "Conception et développement d'applications web et mobiles sur mesure pour entreprises et institutions." },
 ]
 
 const STEPS = [
-  { n: '01', title: 'Souscription', desc: 'Le propriétaire soumet sa demande via notre formulaire en ligne.' },
-  { n: '02', title: 'KYC', desc: 'Vérification d\'identité et collecte des informations de la Gaming Room.' },
+  { n: '01', title: 'Souscription', desc: "Le propriétaire soumet sa demande via notre formulaire en ligne." },
+  { n: '02', title: 'KYC', desc: "Vérification d'identité et collecte des informations de la Gaming Room." },
   { n: '03', title: 'Gaming Room active', desc: 'Validation, création de la GR, et mise en service immédiate.' },
 ]
 
@@ -35,7 +35,7 @@ export default function Home() {
       if (!res.ok) throw new Error()
       setSent(true)
     } catch (e) {
-      setError('Erreur lors de l\'envoi. Réessayez ou écrivez-nous directement.')
+      setError("Erreur lors de l'envoi. Réessayez ou écrivez-nous directement.")
     } finally {
       setSending(false)
     }
@@ -96,10 +96,15 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES.map((s) => (
-              <div key={s.name} className="bg-[#0f1320] border border-white/10 rounded-2xl p-8 hover:border-[#00e5ff]/30 transition-colors group">
+              <div key={s.name} className="bg-[#0f1320] border border-white/10 rounded-2xl p-8 hover:border-[#00e5ff]/30 transition-colors group flex flex-col">
                 <div className="text-4xl mb-4">{s.icon}</div>
                 <h3 className="text-lg font-bold mb-2 group-hover:text-[#00e5ff] transition-colors">{s.name}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
+                <p className="text-slate-400 text-sm leading-relaxed flex-1">{s.desc}</p>
+                {s.name === 'Gaming Room Management' && (
+                  <Link to="/souscrire-gaming-room" className="mt-4 inline-flex items-center gap-2 text-[#00e5ff] text-xs font-bold uppercase tracking-widest hover:gap-3 transition-all">
+                    Souscrire →
+                  </Link>
+                )}
               </div>
             ))}
             <div className="bg-gradient-to-br from-[#00e5ff]/10 to-[#7c3aed]/10 border border-[#00e5ff]/20 rounded-2xl p-8 flex flex-col justify-center items-center text-center">
@@ -203,9 +208,3 @@ export default function Home() {
     </div>
   )
 }
-
-
-
-
-
-
