@@ -17,10 +17,26 @@ const STEPS = [
 export default function App() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
+    setSending(true)
+    setError('')
+    try {
+      const res = await fetch('https://gaming-tv-backend-production.up.railway.app/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error()
+      setSent(true)
+    } catch (e) {
+      setError('Erreur lors de l\'envoi. Réessayez ou écrivez-nous directement.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -164,8 +180,9 @@ export default function App() {
                 <textarea required rows={4} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
                   className="w-full bg-[#151b2e] border border-white/10 rounded-lg px-4 py-3 text-white text-sm outline-none focus:border-[#00e5ff] resize-none" placeholder="Décrivez votre projet..." />
               </div>
-              <button type="submit" className="w-full bg-[#00e5ff] text-black font-black py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-[#00c4d9] transition-colors">
-                Envoyer le message
+              {error && <p className="text-red-400 text-sm text-center">{error}</p>}
+              <button type="submit" disabled={sending} className="w-full bg-[#00e5ff] text-black font-black py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-[#00c4d9] transition-colors disabled:opacity-50">
+                {sending ? "Envoi..." : "Envoyer le message"}
               </button>
               <p className="text-center text-slate-500 text-xs">Ou écrivez-nous directement à <a href="mailto:contact@kasmokgroup.com" className="text-[#00e5ff] hover:underline">contact@kasmokgroup.com</a></p>
             </form>
@@ -184,3 +201,6 @@ export default function App() {
     </div>
   )
 }
+
+
+

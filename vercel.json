@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "mail.kasmokgroup.com" }],
+      "destination": "https://privateemail.com/fr/login/",
+      "permanent": false
+    }
+  ]
+}
