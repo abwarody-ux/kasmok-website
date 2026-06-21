@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const SERVICES = [
@@ -16,8 +16,18 @@ const STEPS = [
   { n: '03', title: 'Gaming Room active', desc: 'Validation, création de la GR, et mise en service immédiate.' },
 ]
 
+const API = 'https://gaming-tv-backend-production.up.railway.app'
+
 export default function Home() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [stats, setStats] = useState({ active_gaming_rooms: 1, total_tvs: 5, cities_covered: 1 })
+
+  useEffect(() => {
+    fetch(`/kasmok/gaming-rooms/public-stats`)
+      .then(res => res.json())
+      .then(data => setStats(data))
+      .catch(() => {})
+  }, [])
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
@@ -141,16 +151,16 @@ export default function Home() {
       <section className="py-24 px-6 border-t border-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
-            <div className="text-5xl font-black text-[#00e5ff] mb-2">1+</div>
+            <div className="text-5xl font-black text-[#00e5ff] mb-2">{stats.active_gaming_rooms}+</div>
             <div className="text-slate-500 text-xs uppercase tracking-widest">Gaming Rooms actives</div>
           </div>
           <div>
-            <div className="text-5xl font-black text-[#a78bfa] mb-2">5+</div>
-            <div className="text-slate-500 text-xs uppercase tracking-widest">TVs connectées</div>
+            <div className="text-5xl font-black text-[#a78bfa] mb-2">{stats.total_tvs}+</div>
+            <div className="text-slate-500 text-xs uppercase tracking-widest">TVs</div>
           </div>
           <div>
-            <div className="text-5xl font-black text-[#10b981] mb-2">1</div>
-            <div className="text-slate-500 text-xs uppercase tracking-widest">Ville couverte</div>
+            <div className="text-5xl font-black text-[#10b981] mb-2">{stats.cities_covered}</div>
+            <div className="text-slate-500 text-xs uppercase tracking-widest">Ville{stats.cities_covered > 1 ? 's' : ''} couverte{stats.cities_covered > 1 ? 's' : ''}</div>
           </div>
         </div>
       </section>
@@ -208,3 +218,5 @@ export default function Home() {
     </div>
   )
 }
+
+
