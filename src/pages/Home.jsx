@@ -23,7 +23,7 @@ export default function Home() {
   const [stats, setStats] = useState({ active_gaming_rooms: 1, total_tvs: 5, cities_covered: 1 })
 
   useEffect(() => {
-    fetch(`/kasmok/gaming-rooms/public-stats`)
+    fetch(`${API}/kasmok/gaming-rooms/public-stats`)
       .then(res => res.json())
       .then(data => setStats(data))
       .catch(() => {})
@@ -218,5 +218,6 @@ export default function Home() {
     </div>
   )
 }
+
 
 
