@@ -318,6 +318,144 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* HOTEL MANAGEMENT SHOWCASE */}
+      <section id="hotel" className="py-24 px-6 border-t border-white/5 overflow-hidden bg-[#0a0d14]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-[#f59e0b] text-xs font-mono tracking-[3px] uppercase">KASMOK Hotel</span>
+            <h2 className="text-3xl md:text-5xl font-black mt-3 mb-4">
+              Gerez votre hotel<br className="hidden md:block" />
+              <span className="text-[#f59e0b]">avec precision</span>
+            </h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+              Reservations, chambres, restaurant, nettoyage, facturation — tout integre dans une seule plateforme pensee pour les hotels de Kinshasa.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+            {[
+              { icon: '🏨', label: 'Gestion chambres', desc: 'Check-in/out en 1 clic' },
+              { icon: '🍽️', label: 'Restaurant integre', desc: 'Commandes et facturation' },
+              { icon: '🧹', label: 'Equipe nettoyage', desc: 'Taches et SLA 15min' },
+              { icon: '💳', label: 'Facturation unifiee', desc: 'Chambre + restaurant' },
+            ].map((f, i) => (
+              <div key={i} className="bg-[#0f1320] border border-[#f59e0b]/20 rounded-2xl p-5 text-center hover:border-[#f59e0b]/40 transition-colors">
+                <div className="text-3xl mb-3">{f.icon}</div>
+                <div className="font-bold text-sm mb-1">{f.label}</div>
+                <div className="text-slate-500 text-xs">{f.desc}</div>
+              </div>
+            ))}
+          </div>
+          <div className="space-y-8">
+            <div className="bg-[#0f1320] border border-[#f59e0b]/20 rounded-3xl p-6 md:p-8">
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+                <div className="flex-1">
+                  <span className="text-[#f59e0b] text-xs font-mono tracking-[3px] uppercase">Vue Reception</span>
+                  <h3 className="text-2xl font-black mt-2 mb-4">Tableau de bord hotel</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6">La reception voit toutes les chambres en temps reel. Check-in rapide, gestion des files d attente, statut nettoyage — tout en un coup d oeil.</p>
+                  <div className="space-y-3">
+                    {['Check-in et check-out instantanes', 'Statut chambre en temps reel', 'File d attente et reservations', 'Historique client complet'].map((f, i) => (
+                      <div key={i} className="flex items-center gap-3 text-sm text-slate-300">
+                        <span className="text-[#f59e0b]">✓</span><span>{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex-1 w-full">
+                  <div className="bg-[#070b14] rounded-2xl p-4 border border-white/10">
+                    <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+                      <span className="text-[#f59e0b] font-black tracking-widest text-xs uppercase">Hotel Dashboard</span>
+                      <span className="text-slate-500 text-xs">Grand Hotel Kinshasa</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { room: 'Ch. 101', type: 'Double', status: 'OCCUPEE', guest: 'M. Kabila', color: '#10b981' },
+                        { room: 'Ch. 102', type: 'Suite', status: 'LIBRE', guest: '—', color: '#475569' },
+                        { room: 'Ch. 103', type: 'Simple', status: 'NETTOYAGE', guest: 'En cours', color: '#f59e0b' },
+                        { room: 'Ch. 104', type: 'Double', status: 'RESERVEE', guest: 'M. Mukeba', color: '#a78bfa' },
+                      ].map((r, i) => (
+                        <div key={i} className="bg-[#0f1320] rounded-xl p-3 border" style={{ borderColor: r.color + '40' }}>
+                          <div className="flex justify-between items-center mb-1">
+                            <span className="font-black text-white text-xs">{r.room}</span>
+                            <span className="text-xs px-2 py-0.5 rounded-full font-bold" style={{ background: r.color + '20', color: r.color }}>{r.status}</span>
+                          </div>
+                          <div className="text-slate-400 text-xs mb-1">{r.type}</div>
+                          <div className="text-slate-300 text-xs font-bold">{r.guest}</div>
+                          {r.status === 'LIBRE' && <button className="mt-2 w-full text-xs bg-[#f59e0b] text-black font-black py-1 rounded-lg">CHECK-IN</button>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-[#0f1320] border border-[#10b981]/20 rounded-3xl p-6">
+                <span className="text-[#10b981] text-xs font-mono tracking-[3px] uppercase">Restaurant</span>
+                <h3 className="text-xl font-black mt-2 mb-3">Gestion restaurant integre</h3>
+                <p className="text-slate-400 text-sm mb-4">Commandes par table, facturation directe sur la chambre, suivi cuisine en temps reel.</p>
+                <div className="bg-[#070b14] rounded-xl p-4 border border-white/10">
+                  <div className="text-xs text-slate-500 uppercase tracking-widest mb-3">Table 5 — Chambre 101</div>
+                  <div className="space-y-2 mb-3">
+                    {[
+                      { item: 'Poulet braise', qty: 2, prix: '8 000 CDF' },
+                      { item: 'Eau minerale', qty: 3, prix: '3 000 CDF' },
+                      { item: 'Dessert du jour', qty: 2, prix: '4 000 CDF' },
+                    ].map((o, i) => (
+                      <div key={i} className="flex justify-between text-xs">
+                        <span className="text-slate-400">{o.qty}x {o.item}</span>
+                        <span className="text-white font-bold">{o.prix}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border-t border-white/10 pt-2 flex justify-between text-xs font-black">
+                    <span className="text-slate-400">Total</span>
+                    <span className="text-[#10b981]">15 000 CDF</span>
+                  </div>
+                  <div className="mt-3 bg-[#10b981]/10 border border-[#10b981]/30 rounded-lg py-2 text-center text-xs font-black text-[#10b981]">Facture sur chambre 101</div>
+                </div>
+              </div>
+              <div className="bg-[#0f1320] border border-[#a78bfa]/20 rounded-3xl p-6">
+                <span className="text-[#a78bfa] text-xs font-mono tracking-[3px] uppercase">Nettoyage</span>
+                <h3 className="text-xl font-black mt-2 mb-3">Equipe nettoyage SLA 15min</h3>
+                <p className="text-slate-400 text-sm mb-4">Apres chaque checkout, une tache de nettoyage est automatiquement creee. SLA garanti 15 minutes.</p>
+                <div className="bg-[#070b14] rounded-xl p-4 border border-white/10">
+                  <div className="text-xs text-slate-500 uppercase tracking-widest mb-3">Taches en cours</div>
+                  <div className="space-y-2">
+                    {[
+                      { room: 'Ch. 102', agent: 'Marie K.', time: '8 min', status: 'EN COURS', color: '#f59e0b' },
+                      { room: 'Ch. 205', agent: 'Paul M.', time: '2 min', status: 'TERMINE', color: '#10b981' },
+                      { room: 'Ch. 301', agent: 'Non assigne', time: '—', status: 'EN ATTENTE', color: '#ef4444' },
+                    ].map((t, i) => (
+                      <div key={i} className="flex items-center gap-3 bg-[#0f1320] rounded-lg p-2 border border-white/5">
+                        <div className="flex-1">
+                          <div className="font-bold text-xs text-white">{t.room}</div>
+                          <div className="text-slate-500 text-xs">{t.agent}</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-xs font-bold" style={{ color: t.color }}>{t.status}</div>
+                          <div className="text-slate-500 text-xs">{t.time}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="text-center mt-16">
+            <div className="inline-block bg-gradient-to-r from-[#f59e0b]/10 to-[#10b981]/10 border border-[#f59e0b]/20 rounded-3xl px-8 py-8 max-w-2xl">
+              <div className="text-4xl mb-4">🏨</div>
+              <h3 className="text-2xl font-black mb-3">KASMOK Hotel — Bientot disponible</h3>
+              <p className="text-slate-400 text-sm mb-6">Notre module Hotel est en cours de developpement. Inscrivez-vous pour etre parmi les premiers a y acceder.</p>
+              <a href="#contact" className="bg-[#f59e0b] text-black font-black px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-[#d97706] transition-colors inline-block">
+                Etre notifie au lancement
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CHIFFRES */}
       <section className="py-24 px-6 border-t border-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
