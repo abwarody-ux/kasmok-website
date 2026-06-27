@@ -6,6 +6,7 @@ const SERVICES = [
   { icon: '💳', name: 'POS', desc: 'Terminaux de paiement électronique pour commerces, certifiés Mastercard et UnionPay.' },
   { icon: '📲', name: 'Paybox', desc: 'Solutions de collecte et paiement digital pour entreprises et institutions.' },
   { icon: '🎮', name: 'Gaming Room Management', desc: 'Plateforme SaaS complète de gestion de salles de jeux PS4/PS5 — KASMOK Digital.' },
+  { icon: '🏨', name: 'Hotel Management', desc: 'Gestion complète de votre hôtel — chambres, restaurant, nettoyage, facturation unifiée — KASMOK Hotel.' },
   { icon: '⛪', name: 'Church Management', desc: 'Système de gestion pour communautés religieuses — membres, finances, événements.' },
   { icon: '💻', name: "Développement d'Applications", desc: "Conception et développement d'applications web et mobiles sur mesure pour entreprises et institutions." },
 ]
