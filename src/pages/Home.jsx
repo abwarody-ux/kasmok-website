@@ -147,6 +147,177 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* GAMING ROOM SHOWCASE */}
+      <section id="gaming-room" className="py-24 px-6 border-t border-white/5 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-[#00e5ff] text-xs font-mono tracking-[3px] uppercase">KASMOK Digital</span>
+            <h2 className="text-3xl md:text-5xl font-black mt-3 mb-4">
+              Gerez votre Gaming Room<br className="hidden md:block" />
+              <span className="text-[#00e5ff]">comme un pro</span>
+            </h2>
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+              Plateforme SaaS complete — sessions PS4/PS5, comptabilite, rapports EOD, file d attente temps reel. Tout pour maximiser vos revenus.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+            {[
+              { icon: '🎮', label: 'Sessions PS4/PS5', desc: 'Timer precis par TV' },
+              { icon: '💰', label: 'Comptabilite auto', desc: 'EOD en 1 clic' },
+              { icon: '📊', label: 'Rapports temps reel', desc: 'Revenus et charges' },
+              { icon: '📡', label: 'Monitoring TV', desc: 'File attente live' },
+            ].map((f, i) => (
+              <div key={i} className="bg-[#0f1320] border border-white/10 rounded-2xl p-5 text-center hover:border-[#00e5ff]/30 transition-colors">
+                <div className="text-3xl mb-3">{f.icon}</div>
+                <div className="font-bold text-sm mb-1">{f.label}</div>
+                <div className="text-slate-500 text-xs">{f.desc}</div>
+              </div>
+            ))}
+          </div>
+          <div className="space-y-8">
+            <div className="bg-[#0f1320] border border-[#00e5ff]/20 rounded-3xl p-6 md:p-8">
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+                <div className="flex-1">
+                  <span className="text-[#00e5ff] text-xs font-mono tracking-[3px] uppercase">Vue Manager</span>
+                  <h3 className="text-2xl font-black mt-2 mb-4">Controle total des sessions</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6">Le Manager supervise toutes les TVs en temps reel. Chaque session demarre sur validation manuelle. Timer precis, pause, reprise, bonus minutes.</p>
+                  <div className="space-y-3">
+                    {['Demarrage sur validation Manager', 'Pause et reprise de session HOLD', 'Bonus minutes +1/+2/+5 min', 'Transfert et reservation de minutes'].map((f, i) => (
+                      <div key={i} className="flex items-center gap-3 text-sm text-slate-300">
+                        <span className="text-[#00e5ff]">✓</span><span>{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex-1 w-full">
+                  <div className="bg-[#070b14] rounded-2xl p-4 border border-white/10">
+                    <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+                      <span className="text-[#00e5ff] font-black tracking-widest text-xs uppercase">Sessions Manager</span>
+                      <span className="text-slate-500 text-xs">KMD-KIN-ARM01</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { tv: 'TV 01', type: 'PS5', status: 'ACTIVE', time: '01:24:33', color: '#10b981' },
+                        { tv: 'TV 02', type: 'PS4', status: 'ACTIVE', time: '00:45:12', color: '#10b981' },
+                        { tv: 'TV 03', type: 'PS5', status: 'WAITING', time: '--:--', color: '#f59e0b' },
+                        { tv: 'TV 04', type: 'PS4', status: 'FREE', time: '--:--', color: '#475569' },
+                      ].map((tv, i) => (
+                        <div key={i} className="bg-[#0f1320] rounded-xl p-3 border" style={{ borderColor: tv.color + '40' }}>
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="font-black text-white text-xs">{tv.tv}</span>
+                            <span className="text-xs px-2 py-0.5 rounded-full font-bold" style={{ background: tv.color + '20', color: tv.color }}>{tv.status}</span>
+                          </div>
+                          <div className="text-slate-400 text-xs mb-1">{tv.type}</div>
+                          <div className="font-black text-lg" style={{ color: tv.color }}>{tv.time}</div>
+                          {tv.status === 'WAITING' && <button className="mt-2 w-full text-xs bg-[#00e5ff] text-black font-black py-1 rounded-lg">START</button>}
+                          {tv.status === 'ACTIVE' && <button className="mt-2 w-full text-xs bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 font-bold py-1 rounded-lg">HOLD</button>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-[#0f1320] border border-[#a78bfa]/20 rounded-3xl p-6">
+                <span className="text-[#a78bfa] text-xs font-mono tracking-[3px] uppercase">Vue Caissier</span>
+                <h3 className="text-xl font-black mt-2 mb-3">Guichet de vente</h3>
+                <p className="text-slate-400 text-sm mb-4">Vente tickets, remboursements avec retenue 30%, file VIP automatique.</p>
+                <div className="bg-[#070b14] rounded-xl p-4 border border-white/10">
+                  <div className="text-xs text-slate-500 uppercase tracking-widest mb-3">Nouvelle vente</div>
+                  <div className="grid grid-cols-2 gap-2 mb-3">
+                    {['PS4 30min 1000 CDF', 'PS4 1h 2000 CDF', 'PS5 30min 1500 CDF', 'PS5 1h 3000 CDF'].map((t, i) => (
+                      <div key={i} className={i===2 ? 'bg-[#a78bfa]/10 border border-[#a78bfa]/30 rounded-lg p-2 text-xs text-[#a78bfa] font-bold' : 'bg-[#0f1320] border border-white/10 rounded-lg p-2 text-xs text-slate-400'}>{t}</div>
+                    ))}
+                  </div>
+                  <div className="bg-[#a78bfa] text-black font-black text-xs py-2 rounded-lg text-center">VENDRE 1 500 CDF</div>
+                </div>
+              </div>
+              <div className="bg-[#0f1320] border border-[#f59e0b]/20 rounded-3xl p-6">
+                <span className="text-[#f59e0b] text-xs font-mono tracking-[3px] uppercase">Vue Financier</span>
+                <h3 className="text-xl font-black mt-2 mb-3">Rapport EOD automatique</h3>
+                <p className="text-slate-400 text-sm mb-4">Cloture journaliere en 1 clic. Rapport envoye par email automatiquement.</p>
+                <div className="bg-[#070b14] rounded-xl p-4 border border-white/10">
+                  <div className="text-xs text-slate-500 uppercase tracking-widest mb-3">Resume du jour</div>
+                  <div className="space-y-2 mb-3">
+                    {[
+                      { label: 'Total Revenus', value: '185 000 CDF', color: '#10b981' },
+                      { label: 'Total Charges', value: '12 500 CDF', color: '#ef4444' },
+                      { label: 'Resultat Net', value: '172 500 CDF', color: '#00e5ff' },
+                      { label: 'Sessions', value: '24 sessions', color: '#a78bfa' },
+                    ].map((r, i) => (
+                      <div key={i} className="flex justify-between text-xs">
+                        <span className="text-slate-400">{r.label}</span>
+                        <span className="font-black" style={{ color: r.color }}>{r.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="bg-[#f59e0b]/10 border border-[#f59e0b]/30 rounded-lg py-2 text-center text-xs font-black text-[#f59e0b]">Rapport EOD envoye par email</div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-gradient-to-r from-[#0f1320] to-[#070b14] border border-[#10b981]/20 rounded-3xl p-6 md:p-8">
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+                <div className="flex-1 w-full">
+                  <div className="bg-[#070b14] rounded-2xl p-5 border border-white/10">
+                    <div className="text-center mb-4">
+                      <div className="text-[#00e5ff] font-black text-xs tracking-widest uppercase mb-1">File d attente en direct</div>
+                    </div>
+                    <div className="space-y-2">
+                      {[
+                        { pos: 1, ticket: 'TKT-007', type: 'PS5', min: 120, vip: true },
+                        { pos: 2, ticket: 'TKT-008', type: 'PS4', min: 60, vip: false },
+                        { pos: 3, ticket: 'TKT-009', type: 'PS5', min: 30, vip: false },
+                      ].map((q, i) => (
+                        <div key={i} className="flex items-center gap-3 bg-[#0f1320] rounded-xl p-3 border border-white/5">
+                          <div className="w-8 h-8 rounded-full bg-[#00e5ff]/10 border border-[#00e5ff]/30 flex items-center justify-center text-[#00e5ff] font-black text-sm">{q.pos}</div>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2">
+                              <span className="font-bold text-sm">{q.ticket}</span>
+                              {q.vip && <span className="text-xs bg-[#f59e0b]/10 text-[#f59e0b] border border-[#f59e0b]/30 px-2 py-0.5 rounded-full font-bold">VIP</span>}
+                            </div>
+                            <div className="text-slate-500 text-xs">{q.type} {q.min} min</div>
+                          </div>
+                          <div className="text-[#00e5ff] font-black text-sm">{q.min} min</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <span className="text-[#10b981] text-xs font-mono tracking-[3px] uppercase">Monitoring temps reel</span>
+                  <h3 className="text-2xl font-black mt-2 mb-4">File d attente intelligente</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6">Un ecran TV dans votre salle affiche la file en temps reel. Les clients VIP (+120 min) passent automatiquement en priorite.</p>
+                  <div className="space-y-3">
+                    {['Mise a jour WebSocket instantanee', 'Priorite VIP automatique 120 min', 'Gestion HOLD et Reservations', 'APK Android TV dedie'].map((f, i) => (
+                      <div key={i} className="flex items-center gap-3 text-sm text-slate-300">
+                        <span className="text-[#10b981]">✓</span><span>{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="text-center mt-16">
+            <div className="inline-block bg-gradient-to-r from-[#00e5ff]/10 to-[#7c3aed]/10 border border-[#00e5ff]/20 rounded-3xl px-8 py-8 max-w-2xl">
+              <div className="text-4xl mb-4">🚀</div>
+              <h3 className="text-2xl font-black mb-3">Pret a digitaliser votre Gaming Room ?</h3>
+              <p className="text-slate-400 text-sm mb-6">Rejoignez les Gaming Rooms qui font confiance a KASMOK Digital. Souscription en 2 minutes.</p>
+              <div className="flex gap-4 justify-center flex-wrap">
+                <Link to="/souscrire-gaming-room" className="bg-[#00e5ff] text-black font-black px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-[#00c4d9] transition-colors">
+                  Souscrire maintenant
+                </Link>
+                <a href="#contact" className="border border-white/10 text-slate-300 px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-white/5 transition-colors">
+                  Nous contacter
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CHIFFRES */}
       <section className="py-24 px-6 border-t border-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
