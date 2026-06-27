@@ -16,7 +16,7 @@ const STEPS = [
   { n: '03', title: 'Gaming Room active', desc: 'Validation, création de la GR, et mise en service immédiate.' },
 ]
 
-const API = 'https://gaming-tv-backend-production.up.railway.app'
+const API = 'https://api.kasmokgroup.com'
 
 export default function Home() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -37,7 +37,7 @@ export default function Home() {
     setSending(true)
     setError('')
     try {
-      const res = await fetch('https://gaming-tv-backend-production.up.railway.app/contact', {
+      const res = await fetch('https://api.kasmokgroup.com/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

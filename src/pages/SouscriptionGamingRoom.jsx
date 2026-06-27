@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const API = 'https://gaming-tv-backend-production.up.railway.app'
+const API = 'https://api.kasmokgroup.com'
 
 const CITIES = ['Kinshasa', 'Lubumbashi', 'Mbuji-Mayi', 'Goma', 'Kisangani', 'Kananga', 'Bukavu', 'Matadi']
 
@@ -24,7 +24,7 @@ export default function SouscriptionGamingRoom() {
     try {
       const res = await fetch(`${API}/kasmok/subscriptions`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-token': 'gaming-tv-test-2025' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
       if (!res.ok) throw new Error()
