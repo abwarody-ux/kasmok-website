@@ -5,12 +5,12 @@ const SERVICES = (stats) => [
   { icon: '🏧', name: 'ATM', desc: 'Déploiement et maintenance de distributeurs automatiques de billets, intégration multi-réseaux.' },
   { icon: '💳', name: 'POS', desc: 'Terminaux de paiement électronique pour commerces, certifiés Mastercard et UnionPay.' },
   { icon: '📲', name: 'Paybox', desc: 'Solutions de collecte et paiement digital pour entreprises et institutions.' },
-  { icon: '🎮', name: 'Gaming Room Management', desc: 'Plateforme SaaS complète de gestion de salles de jeux PS4/PS5 — KASMOK Digital.', stats: [
+  { icon: '🎮', name: 'Gaming Room Management', link: '/gaming-room', desc: 'Plateforme SaaS complète de gestion de salles de jeux PS4/PS5 — KASMOK Digital.', stats: [
     { label: 'GRs actives', value: stats.active_gaming_rooms + '+' },
     { label: 'TVs deployees', value: stats.total_tvs + '+' },
     { label: 'Villes', value: stats.cities_covered },
   ]},
-  { icon: '🏨', name: 'Hotel Management', desc: 'Gestion complète de votre hôtel — chambres, restaurant, nettoyage, facturation unifiée — KASMOK Hotel.', stats: [
+  { icon: '🏨', name: 'Hotel Management', link: '/hotel', desc: 'Gestion complète de votre hôtel — chambres, restaurant, nettoyage, facturation unifiée — KASMOK Hotel.', stats: [
     { label: 'Bientot disponible', value: '🚀' },
   ]},
   { icon: '⛪', name: 'Church Management', desc: 'Système de gestion pour communautés religieuses — membres, finances, événements.' },
@@ -113,7 +113,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES(stats).map((s) => (
-              <div key={s.name} className="bg-[#0f1320] border border-white/10 rounded-2xl p-8 hover:border-[#00e5ff]/30 transition-colors group flex flex-col">
+              <div key={s.name} onClick={() => s.link && window.location.assign(s.link)} className={`bg-[#0f1320] border border-white/10 rounded-2xl p-8 hover:border-[#00e5ff]/30 transition-colors group flex flex-col ${s.link ? 'cursor-pointer' : ''}`}>
                 <div className="text-4xl mb-4">{s.icon}</div>
                 <h3 className="text-lg font-bold mb-2 group-hover:text-[#00e5ff] transition-colors">{s.name}</h3>
                 <p className="text-slate-400 text-sm leading-relaxed flex-1">{s.desc}</p>
