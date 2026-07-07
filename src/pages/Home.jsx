@@ -14,7 +14,7 @@ const SERVICES = (stats) => [
     { label: 'Bientot disponible', value: '🚀' },
   ]},
   { icon: '⛪', name: 'Church Management', desc: 'Système de gestion pour communautés religieuses — membres, finances, événements.' },
-  { icon: '💻', name: "Développement d'Applications", desc: "Conception et développement d'applications web et mobiles sur mesure pour entreprises et institutions." },
+  { icon: '💻', name: "Développement d'Applications", link: '/dev-web', desc: "Conception et développement d'applications web et mobiles sur mesure pour entreprises et institutions." },
 ]
 
 const STEPS = [

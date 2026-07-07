@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import SouscriptionGamingRoom from './pages/SouscriptionGamingRoom'
 import GamingRoomPage from './pages/GamingRoomPage'
 import HotelPage from './pages/HotelPage'
+import DevWebPage from './pages/DevWebPage'
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/souscrire-gaming-room" element={<SouscriptionGamingRoom />} />
         <Route path="/gaming-room" element={<GamingRoomPage />} />
         <Route path="/hotel" element={<HotelPage />} />
+        <Route path="/dev-web" element={<DevWebPage />} />
       </Routes>
     </BrowserRouter>
   )
