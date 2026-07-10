@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const SERVICES = (stats) => [
@@ -11,7 +11,7 @@ const SERVICES = (stats) => [
     { label: 'Villes', value: stats.cities_covered },
   ]},
   { icon: '🏨', name: 'Hotel Management', link: '/hotel', desc: 'Gestion complète de votre hôtel — chambres, restaurant, nettoyage, facturation unifiée — KASMOK Hotel.', stats: [
-    { label: 'Bientot disponible', value: '🚀' },
+    { label: 'Disponible', value: '✅' },
   ]},
   { icon: '⛪', name: 'Church Management', desc: 'Système de gestion pour communautés religieuses — membres, finances, événements.' },
   { icon: '💻', name: "Développement d'Applications", link: '/dev-web', desc: "Conception et développement d'applications web et mobiles sur mesure pour entreprises et institutions." },
@@ -463,11 +463,16 @@ export default function Home() {
           <div className="text-center mt-16">
             <div className="inline-block bg-gradient-to-r from-[#f59e0b]/10 to-[#10b981]/10 border border-[#f59e0b]/20 rounded-3xl px-8 py-8 max-w-2xl">
               <div className="text-4xl mb-4">🏨</div>
-              <h3 className="text-2xl font-black mb-3">KASMOK Hotel — Bientot disponible</h3>
-              <p className="text-slate-400 text-sm mb-6">Notre module Hotel est en cours de developpement. Inscrivez-vous pour etre parmi les premiers a y acceder.</p>
-              <a href="#contact" className="bg-[#f59e0b] text-black font-black px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-[#d97706] transition-colors inline-block">
-                Etre notifie au lancement
-              </a>
+              <h3 className="text-2xl font-black mb-3">KASMOK Hotel — Deja disponible</h3>
+              <p className="text-slate-400 text-sm mb-6">Notre module Hotel est operationnel. Accedez a votre espace de gestion des maintenant.</p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="https://hotel.kasmokgroup.com" target="_blank" rel="noopener noreferrer" className="bg-[#f59e0b] text-black font-black px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-[#d97706] transition-colors inline-block">
+                  Acceder a KASMOK Hotel
+                </a>
+                <a href="#contact" className="border border-[#f59e0b]/30 text-[#f59e0b] px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-[#f59e0b]/10 transition-colors inline-block">
+                  Demander une demo
+                </a>
+              </div>
             </div>
           </div>
         </div>
