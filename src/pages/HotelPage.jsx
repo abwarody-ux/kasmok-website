@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
 
 export default function HotelPage() {
   return (
@@ -20,18 +20,16 @@ export default function HotelPage() {
       <section className="relative pt-40 pb-20 px-6" style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(245,158,11,.10) 0%, transparent 60%)' }}>
         <div className="max-w-5xl mx-auto text-center">
           <div className="text-6xl mb-6">🏨</div>
-          <span className="text-[#f59e0b] text-xs font-mono tracking-[3px] uppercase">KASMOK Hotel — Bientôt</span>
+          <span className="text-[#f59e0b] text-xs font-mono tracking-[3px] uppercase">KASMOK Hotel — Disponible</span>
           <h1 className="text-4xl md:text-6xl font-black mt-3 mb-6">Hotel<br /><span className="text-[#f59e0b]">Management</span></h1>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-6">
             La solution complète pour gérer votre hôtel en RDC. Chambres, restaurant, nettoyage, facturation — tout intégré dans une seule plateforme.
           </p>
           <div className="inline-block bg-[#f59e0b]/10 border border-[#f59e0b]/30 text-[#f59e0b] text-sm font-bold px-6 py-3 rounded-xl mb-8">
-            🚀 En cours de développement — Lancement prévu T3 2026
+            ✅ Disponible et operationnel des maintenant
           </div>
           <div className="flex gap-4 justify-center flex-wrap">
-            <a href="#notify" className="bg-[#f59e0b] text-black font-black px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm">
-              Être notifié au lancement
-            </a>
+            <a href="https://hotel.kasmokgroup.com" target="_blank" rel="noopener noreferrer" className="bg-[#f59e0b] text-black font-black px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm">Acceder a KASMOK Hotel</a>
             <Link to="/" className="border border-white/10 text-slate-300 px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-white/5">
               ← Retour
             </Link>
@@ -74,13 +72,13 @@ export default function HotelPage() {
       {/* NOTIFY */}
       <section id="notify" className="py-20 px-6 border-t border-white/5 bg-[#0a0d14]">
         <div className="max-w-lg mx-auto text-center">
-          <div className="text-4xl mb-4">📬</div>
-          <h2 className="text-2xl font-black mb-3">Soyez parmi les premiers</h2>
-          <p className="text-slate-400 text-sm mb-8">Inscrivez-vous pour être notifié dès le lancement de KASMOK Hotel et bénéficier d’une offre de lancement exclusive.</p>
-          <a href="mailto:contact@kasmokgroup.com?subject=Notification KASMOK Hotel" className="block w-full bg-[#f59e0b] text-black font-black py-3.5 rounded-xl tracking-widest uppercase text-sm text-center hover:bg-[#d97706] transition-colors">
-            📧 M’inscrire pour le lancement
+          <div className="text-4xl mb-4">🏨</div>
+          <h2 className="text-2xl font-black mb-3">Devenez client KASMOK Hotel</h2>
+          <p className="text-slate-400 text-sm mb-8">Contactez-nous pour souscrire et digitaliser la gestion de votre hotel des aujourd'hui.</p>
+          <a href="mailto:contact@kasmokgroup.com?subject=Souscription KASMOK Hotel" className="block w-full bg-[#f59e0b] text-black font-black py-3.5 rounded-xl tracking-widest uppercase text-sm text-center hover:bg-[#d97706] transition-colors">
+            Demander une souscription
           </a>
-          <p className="text-slate-500 text-xs mt-4">Ou écrivez-nous à contact@kasmokgroup.com</p>
+          <p className="text-slate-500 text-xs mt-4">Ou visitez la page d'accueil pour remplir le formulaire de souscription</p>
         </div>
       </section>
 
@@ -124,3 +122,5 @@ export default function HotelPage() {
     </div>
   )
 }
+
+
