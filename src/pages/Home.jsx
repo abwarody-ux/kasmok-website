@@ -111,6 +111,21 @@ export default function Home() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [stats, setStats] = useState({ active_gaming_rooms: 1, total_tvs: 5, cities_covered: 1, total_subscriptions: 0, active_agents: 0 })
 
+  const [visitCount, setVisitCount] = useState(null)
+
+  useEffect(() => {
+    const alreadyTracked = sessionStorage.getItem('kasmok_visit_tracked')
+    const endpoint = alreadyTracked ? '/website/visits' : '/website/track-visit'
+    const method = alreadyTracked ? 'GET' : 'POST'
+    fetch(`${API}${endpoint}`, { method })
+      .then(res => res.json())
+      .then(data => {
+        setVisitCount(data.visit_count)
+        sessionStorage.setItem('kasmok_visit_tracked', '1')
+      })
+      .catch(() => {})
+  }, [])
+
   useEffect(() => {
     fetch(`${API}/kasmok/gaming-rooms/public-stats`)
       .then(res => res.json())
@@ -153,6 +168,13 @@ export default function Home() {
             <a href="#services" className="hover:text-white transition-colors">Services</a>
             <a href="#how" className="hover:text-white transition-colors">Comment ça marche</a>
             <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+          </div>
+          <div className="hidden lg:flex items-center gap-2 text-xs text-slate-500 border border-white/10 rounded-full px-3 py-1.5 mr-3">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10b981]"></span>
+            </span>
+            {visitCount !== null ? visitCount.toLocaleString('fr-FR') + ' visiteurs' : '...'}
           </div>
           <a href="https://gaming.kasmokgroup.com" className="text-xs bg-[#00e5ff]/10 hover:bg-[#00e5ff]/20 border border-[#00e5ff]/30 text-[#00e5ff] px-4 py-2 rounded-lg transition-colors tracking-widest uppercase font-bold">
             Accès Gaming
