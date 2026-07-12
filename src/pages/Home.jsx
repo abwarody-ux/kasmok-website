@@ -169,7 +169,7 @@ export default function Home() {
             <a href="#how" className="hover:text-white transition-colors">Comment ça marche</a>
             <a href="#contact" className="hover:text-white transition-colors">Contact</a>
           </div>
-          <div className="hidden lg:flex items-center gap-2 text-xs text-slate-500 border border-white/10 rounded-full px-3 py-1.5 mr-3">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-slate-500 border border-white/10 rounded-full px-2 sm:px-3 py-1 sm:py-1.5 mr-2 sm:mr-3">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10b981] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10b981]"></span>
@@ -704,6 +704,7 @@ export default function Home() {
     </div>
   )
 }
+
 
 
 
