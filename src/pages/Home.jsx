@@ -2,9 +2,9 @@
 import { Link } from 'react-router-dom'
 
 const SERVICES = (stats) => [
-  { icon: '🏧', name: 'ATM', desc: 'Déploiement et maintenance de distributeurs automatiques de billets, intégration multi-réseaux.' },
-  { icon: '💳', name: 'POS', desc: 'Terminaux de paiement électronique pour commerces, certifiés Mastercard et UnionPay.' },
-  { icon: '📲', name: 'Paybox', desc: 'Solutions de collecte et paiement digital pour entreprises et institutions.' },
+  { icon: '🏧', name: 'ATM', link: '/atm', desc: 'Déploiement et maintenance de distributeurs automatiques de billets, intégration multi-réseaux.' },
+  { icon: '💳', name: 'POS', link: '/pos', desc: 'Terminaux de paiement électronique pour commerces, certifiés Mastercard et UnionPay.' },
+  { icon: '📲', name: 'Paybox', link: '/paybox', desc: 'Solutions de collecte et paiement digital pour entreprises et institutions.' },
   { icon: '🎮', name: 'Gaming Room Management', link: '/gaming-room', desc: 'Plateforme SaaS complète de gestion de salles de jeux PS4/PS5 — KASMOK Digital.', stats: [
     { label: 'GRs actives', value: stats.active_gaming_rooms + '+' },
     { label: 'TVs deployees', value: stats.total_tvs + '+' },
@@ -13,7 +13,7 @@ const SERVICES = (stats) => [
   { icon: '🏨', name: 'Hotel Management', link: '/hotel', desc: 'Gestion complète de votre hôtel — chambres, restaurant, nettoyage, facturation unifiée — KASMOK Hotel.', stats: [
     { label: 'Disponible', value: '✅' },
   ]},
-  { icon: '⛪', name: 'Church Management', desc: 'Système de gestion pour communautés religieuses — membres, finances, événements.' },
+  { icon: '⛪', name: 'Church Management', link: '/church', desc: 'Système de gestion pour communautés religieuses — membres, finances, événements.' },
   { icon: '💻', name: "Développement d'Applications", link: '/dev-web', desc: "Conception et développement d'applications web et mobiles sur mesure pour entreprises et institutions." },
 ]
 
