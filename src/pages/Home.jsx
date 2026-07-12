@@ -25,6 +25,88 @@ const STEPS = [
 
 const API = 'https://api.kasmokgroup.com'
 
+function SubscriptionMiniForm({ entity, color, apiPath, nameField, nameLabel, namePlaceholder }) {
+  const [open, setOpen] = useState(false)
+  const [form, setForm] = useState({ full_name: '', phone: '', email: '', city: '', [nameField]: '' })
+  const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setSending(true)
+    setError('')
+    try {
+      const res = await fetch(`https://api.kasmokgroup.com${apiPath}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error('failed')
+      setSent(true)
+    } catch (e) {
+      setError("Erreur lors de l'envoi. Reessayez ou ecrivez-nous directement.")
+    } finally {
+      setSending(false)
+    }
+  }
+
+  if (!open) {
+    return (
+      <button onClick={() => setOpen(true)} className="border px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm transition-colors inline-block"
+        style={{ borderColor: color + '4d', color }}>
+        Devenir client {entity}
+      </button>
+    )
+  }
+
+  return (
+    <div className="text-left bg-[#0a0d14] border border-white/10 rounded-2xl p-6 mt-6 max-w-md mx-auto">
+      {sent ? (
+        <div className="text-center py-4">
+          <div className="text-3xl mb-2">✅</div>
+          <p className="text-green-400 font-bold text-sm">Demande envoyee !</p>
+          <p className="text-slate-400 text-xs mt-2">Notre equipe vous contactera sous peu pour finaliser votre souscription.</p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div>
+            <label className="block text-xs text-slate-400 uppercase tracking-widest mb-1">Nom complet</label>
+            <input required value={form.full_name} onChange={e => setForm({ ...form, full_name: e.target.value })}
+              className="w-full bg-[#151b2e] border border-white/10 rounded-lg px-3 py-2.5 text-white text-sm outline-none" placeholder="Votre nom" />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs text-slate-400 uppercase tracking-widest mb-1">Telephone</label>
+              <input required value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })}
+                className="w-full bg-[#151b2e] border border-white/10 rounded-lg px-3 py-2.5 text-white text-sm outline-none" placeholder="+243..." />
+            </div>
+            <div>
+              <label className="block text-xs text-slate-400 uppercase tracking-widest mb-1">Ville</label>
+              <input value={form.city} onChange={e => setForm({ ...form, city: e.target.value })}
+                className="w-full bg-[#151b2e] border border-white/10 rounded-lg px-3 py-2.5 text-white text-sm outline-none" placeholder="Kinshasa" />
+            </div>
+          </div>
+          <div>
+            <label className="block text-xs text-slate-400 uppercase tracking-widest mb-1">Email</label>
+            <input required type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
+              className="w-full bg-[#151b2e] border border-white/10 rounded-lg px-3 py-2.5 text-white text-sm outline-none" placeholder="vous@email.com" />
+          </div>
+          <div>
+            <label className="block text-xs text-slate-400 uppercase tracking-widest mb-1">{nameLabel}</label>
+            <input required value={form[nameField]} onChange={e => setForm({ ...form, [nameField]: e.target.value })}
+              className="w-full bg-[#151b2e] border border-white/10 rounded-lg px-3 py-2.5 text-white text-sm outline-none" placeholder={namePlaceholder} />
+          </div>
+          {error && <p className="text-red-400 text-xs">{error}</p>}
+          <button type="submit" disabled={sending} className="w-full text-black font-black py-3 rounded-xl tracking-widest uppercase text-sm transition-colors disabled:opacity-50"
+            style={{ background: color }}>
+            {sending ? 'Envoi...' : 'Envoyer la demande'}
+          </button>
+        </form>
+      )}
+    </div>
+  )
+}
 export default function Home() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [stats, setStats] = useState({ active_gaming_rooms: 1, total_tvs: 5, cities_covered: 1, total_subscriptions: 0, active_agents: 0 })
@@ -469,15 +551,37 @@ export default function Home() {
                 <a href="https://hotel.kasmokgroup.com" target="_blank" rel="noopener noreferrer" className="bg-[#f59e0b] text-black font-black px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-[#d97706] transition-colors inline-block">
                   Acceder a KASMOK Hotel
                 </a>
-                <a href="#contact" className="border border-[#f59e0b]/30 text-[#f59e0b] px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-[#f59e0b]/10 transition-colors inline-block">
-                  Demander une demo
-                </a>
+                <SubscriptionMiniForm entity="Hotel" color="#f59e0b" apiPath="/hotel/subscriptions" nameField="hotel_name" nameLabel="Nom de l'hotel" namePlaceholder="Ex: Grand Hotel Kinshasa" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* CHURCH SHOWCASE */}
+      <section id="church" className="py-24 px-6 border-t border-white/5 bg-[#0a0d14]">
+        <div className="max-w-4xl mx-auto text-center">
+          <span className="text-[#a78bfa] text-xs font-mono tracking-[3px] uppercase">KASMOK Church</span>
+          <h2 className="text-3xl md:text-5xl font-black mt-3 mb-4">
+            Digitalisez votre eglise<br className="hidden md:block" />
+            <span className="text-[#a78bfa]">en toute simplicite</span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
+            Membres, departements, presences, offrandes et evenements geres depuis une seule plateforme.
+          </p>
+          <div className="inline-block bg-gradient-to-r from-[#a78bfa]/10 to-[#00e5ff]/10 border border-[#a78bfa]/20 rounded-3xl px-8 py-8 max-w-2xl">
+            <div className="text-4xl mb-4">⛪</div>
+            <h3 className="text-2xl font-black mb-3">KASMOK Church — Deja disponible</h3>
+            <p className="text-slate-400 text-sm mb-6">Notre module Eglise est operationnel. Souscrivez des maintenant.</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a href="https://church.kasmokgroup.com" target="_blank" rel="noopener noreferrer" className="bg-[#a78bfa] text-black font-black px-8 py-3.5 rounded-xl tracking-widest uppercase text-sm hover:bg-[#8b6ee8] transition-colors inline-block">
+                Acceder a KASMOK Church
+              </a>
+              <SubscriptionMiniForm entity="Eglise" color="#a78bfa" apiPath="/church/subscriptions" nameField="church_name" nameLabel="Nom de l'eglise" namePlaceholder="Ex: Eglise du Reveil" />
+            </div>
+          </div>
+        </div>
+      </section>
       {/* CHIFFRES */}
       <section className="py-24 px-6 border-t border-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -578,6 +682,7 @@ export default function Home() {
     </div>
   )
 }
+
 
 
 
